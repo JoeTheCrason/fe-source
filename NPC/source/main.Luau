@@ -3,16 +3,16 @@
 
 if patricknpcpanel then return end; patricknpcpanel = true
 
-local github = "https://raw.githubusercontent.com/JoeTheCrason/fe-source/refs/heads/main/NPC"
+local github = "https://raw.githubusercontent.com/randomstring0/fe-source/refs/heads/main/NPC"
 local load = loadstring(game:HttpGet(github .. "/module.Luau"))()
 
 saved = loadstring(game:HttpGet(github .. "/table.luau"))()
 
 local save = saved or {}
 
-local g2l           = load.G2L
-local new           = load.create()
-local partowner     = load.partowner
+local g2l            = load.G2L
+local new            = load.create()
+local partowner      = load.partowner
 local setSelectedNPC = load.setSelectedNPC
 
 local lighting    = game:GetService("Lighting")
@@ -23,22 +23,22 @@ local plrs        = game:GetService("Players")
 local lp          = plrs.LocalPlayer
 local mouse       = lp:GetMouse()
 
-local fast   = TweenInfo.new(.5, Enum.EasingStyle.Exponential)
+local fast   = TweenInfo.new(.5,  Enum.EasingStyle.Exponential)
 local medium = TweenInfo.new(.67)
 local slow   = TweenInfo.new(.8)
 
 local rad        = 150
 local currentnpc = nil
 
--- ─── HIGHLIGHT for selection feedback ───────────────────────────
+-- ─── SELECTION HIGHLIGHT ────────────────────────────────────────
 local highlight = Instance.new("Highlight")
-highlight.Parent = lp
-highlight.FillTransparency = 1
+highlight.Parent             = lp
+highlight.FillTransparency   = 1
 highlight.OutlineTransparency = 1
 
 local function light(adornee, color)
 	task.spawn(function()
-		highlight.Adornee = adornee
+		highlight.Adornee    = adornee
 		highlight.OutlineColor = color
 		tweenservice:Create(highlight, medium, {OutlineTransparency = 0}):Play()
 		task.wait(.5)
@@ -53,17 +53,16 @@ local function isnpc(ins)
 	return nil
 end
 
--- ─── HOVER HIGHLIGHT for NPC selection mode ───────────────────
+-- ─── HOVER HIGHLIGHT (click-to-select mode) ──────────────────────
 local hoverHighlight = Instance.new("Highlight")
-hoverHighlight.Parent = lp
-hoverHighlight.FillTransparency = 0.85
-hoverHighlight.FillColor = Color3.fromRGB(110, 90, 255)
-hoverHighlight.OutlineColor = Color3.fromRGB(170, 155, 255)
+hoverHighlight.Parent             = lp
+hoverHighlight.FillTransparency   = 0.85
+hoverHighlight.FillColor          = Color3.fromRGB(110, 90, 255)
+hoverHighlight.OutlineColor       = Color3.fromRGB(170, 155, 255)
 hoverHighlight.OutlineTransparency = 0
-hoverHighlight.Adornee = nil
-hoverHighlight.Enabled = false
+hoverHighlight.Adornee            = nil
+hoverHighlight.Enabled            = false
 
--- Track which model is being hovered so we don't thrash every frame
 local hoveredModel = nil
 
 rs.RenderStepped:Connect(function()
@@ -72,27 +71,24 @@ rs.RenderStepped:Connect(function()
 		hoveredModel = nil
 		return
 	end
-
 	local target = mouse.Target
 	if not target then
 		hoverHighlight.Enabled = false
 		hoveredModel = nil
 		return
 	end
-
 	local model = target.Parent
 	if model and isnpc(model) then
 		local hrp = model:FindFirstChild("HumanoidRootPart")
 		if hrp and not hrp.Anchored and partowner(hrp) then
 			if model ~= hoveredModel then
-				hoveredModel = model
+				hoveredModel           = model
 				hoverHighlight.Adornee = model
 				hoverHighlight.Enabled = true
 			end
 			return
 		end
 	end
-
 	hoverHighlight.Enabled = false
 	hoveredModel = nil
 end)
@@ -136,6 +132,53 @@ new:mainbutton(save["3"].title, save["3"].des, function()
 			end
 		else
 			light(currentnpc, Color3.fromRGB(255, 0, 0))
+		end
+	end
+end)
+
+-- NEW: Spectate NPC toggle — placed directly above "control npc"
+-- When on: sets the camera subject to the NPC's HumanoidRootPart without
+-- changing lp.Character, so the player's own character is unaffected.
+local spectateCon
+local spectateHandle
+spectateHandle = new:maintoggle("spectate npc", "attach your camera view to the target", function(a)
+	if a then
+		if currentnpc then
+			local hrp = currentnpc:FindFirstChild("HumanoidRootPart")
+			if hrp and partowner(hrp) then
+				ws.CurrentCamera.CameraSubject = hrp
+				-- Keep re-assigning each frame in case CameraSubject gets reset
+				spectateCon = rs.RenderStepped:Connect(function()
+					if currentnpc and ws.CurrentCamera then
+						local h = currentnpc:FindFirstChild("HumanoidRootPart")
+						if h then
+							ws.CurrentCamera.CameraSubject = h
+						else
+							-- NPC died / despawned, stop spectating
+							spectateHandle:swich(false)
+							if spectateCon then spectateCon:Disconnect(); spectateCon = nil end
+							local chr = lp.Character
+							if chr then
+								local hum = chr:FindFirstChildOfClass("Humanoid")
+								if hum then ws.CurrentCamera.CameraSubject = hum end
+							end
+						end
+					end
+				end)
+			else
+				light(currentnpc, Color3.fromRGB(255, 0, 0))
+				spectateHandle:swich(false)
+			end
+		else
+			spectateHandle:swich(false)
+		end
+	else
+		if spectateCon then spectateCon:Disconnect(); spectateCon = nil end
+		-- Restore camera to local player's humanoid
+		local chr = lp.Character
+		if chr then
+			local hum = chr:FindFirstChildOfClass("Humanoid")
+			if hum then ws.CurrentCamera.CameraSubject = hum end
 		end
 	end
 end)
@@ -240,7 +283,7 @@ follownpc = new:maintoggle(save["8"].title, save["8"].des, function(a)
 	end
 end)
 
--- 9. Kill Aura (extra toggle)
+-- 9. Kill Aura
 local con1
 new:extratoggle(save["9"].title, function(a)
 	if a then
@@ -263,7 +306,7 @@ new:extratoggle(save["9"].title, function(a)
 	end
 end)
 
--- 10. Jump Aura (extra toggle)
+-- 10. Jump Aura
 local con2
 new:extratoggle(save["10"].title, function(a)
 	if a then
@@ -286,33 +329,62 @@ new:extratoggle(save["10"].title, function(a)
 	end
 end)
 
+-- ─── AUTO-SELECT NEAREST NPC ─────────────────────────────────────
+-- Reads the global `autonpc` set by the module toggle.
+-- Runs on Stepped (not RenderStepped) — physics world, not per-frame render.
+-- Every 0.25s finds the closest owned, unanchored NPC within 500 studs.
+local autoTimer = 0
+rs.Stepped:Connect(function(_, dt)
+	if not autonpc then return end
+	autoTimer = autoTimer + dt
+	if autoTimer < 0.25 then return end
+	autoTimer = 0
+
+	local myhrp = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart")
+	if not myhrp then return end
+
+	local bestModel, bestDist = nil, math.huge
+	-- Scan NPCs within 500 studs using GetPartBoundsInRadius
+	for _, part in pairs(ws:GetPartBoundsInRadius(myhrp.Position, 500)) do
+		local model = part:FindFirstAncestorOfClass("Model")
+		if model and isnpc(model) and model ~= lp.Character then
+			local hrp = model:FindFirstChild("HumanoidRootPart")
+			if hrp and not hrp.Anchored and partowner(hrp) then
+				local dist = (hrp.Position - myhrp.Position).Magnitude
+				if dist < bestDist then
+					bestDist  = dist
+					bestModel = model
+				end
+			end
+		end
+	end
+
+	if bestModel and bestModel ~= currentnpc then
+		currentnpc = bestModel
+		setSelectedNPC(bestModel)
+	end
+end)
+
 -- ─── NPC CLICK SELECTION ─────────────────────────────────────────
--- Improved: validates on click, shows name in header badge, flashes clear feedback
 mouse.Button1Down:Connect(function()
 	if not clicknpc then return end
 	if not mouse.Target then return end
-
 	local model = mouse.Target.Parent
 	if not model then return end
 	if not model:FindFirstChild("HumanoidRootPart") then return end
-	if plrs:GetPlayerFromCharacter(model) then return end -- ignore real players
+	if plrs:GetPlayerFromCharacter(model) then return end
 
 	local hrp = model:FindFirstChild("HumanoidRootPart")
 	if hrp.Anchored then
-		-- anchored: can't own it, red flash
 		light(model, Color3.fromRGB(255, 60, 60))
 		return
 	end
-
 	if partowner(hrp) then
-		-- success: select the NPC
 		currentnpc = model
-		setSelectedNPC(model)        -- updates badge in header
+		setSelectedNPC(model)
 		light(model, Color3.fromRGB(40, 210, 110))
 	else
-		-- not owned: red flash, clear selection badge
 		light(model, Color3.fromRGB(255, 60, 60))
-		-- don't overwrite currentnpc if we had a valid one before
 	end
 end)
 
