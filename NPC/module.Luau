@@ -124,7 +124,7 @@ do
 
 	local ico = Instance.new("ImageLabel", G2L["intro"])
 	ico.Name                  = "icon"
-	ico.Image                 = "rbxassetid://97139491553463"
+	ico.Image                 = "rbxassetid://124350377833889"
 	ico.ScaleType             = Enum.ScaleType.Fit
 	ico.Size                  = UDim2.new(0, 56, 0, 56)
 	ico.Position              = UDim2.new(0.5, -28, 0, 20)
@@ -147,7 +147,7 @@ do
 	G2L["intro_title"] = t
 
 	local sub = Instance.new("TextLabel", G2L["intro"])
-	sub.Text                  = "by @Im_Patrick"
+	sub.Text                  = "by @nullgpt20"
 	sub.TextSize              = 12
 	sub.FontFace              = makefont(Enum.FontWeight.Regular)
 	sub.TextColor3            = C.textMuted
@@ -234,7 +234,7 @@ do
 	-- Icon
 	local icon = Instance.new("ImageLabel", G2L["bar"])
 	icon.Name                  = "icon"
-	icon.Image                 = "rbxassetid://96581271712752"
+	icon.Image                 = "rbxassetid://124350377833889"
 	icon.ScaleType             = Enum.ScaleType.Fit
 	icon.Size                  = UDim2.new(0, 22, 0, 22)
 	icon.Position              = UDim2.new(0, 26, 0.5, -11)
