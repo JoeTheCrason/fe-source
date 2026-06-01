@@ -1,6 +1,3 @@
---1. rules: it is forbidden to change the credit name, this script was created by @im_patrick you will be charged dcma for changing the credit
---2. rules: changing the code using AI and claiming it as your own is not allowed
-
 if patricknpcpanel then return end; patricknpcpanel = true
 
 local github = "https://raw.githubusercontent.com/JoeTheCrason/fe-source/refs/heads/main/NPC"
