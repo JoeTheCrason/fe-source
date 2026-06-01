@@ -1,4 +1,4 @@
-if patricknpcpanel then return end; patricknpcpanel = true
+if nullnpcpanel then return end; nullnpcpanel = true
 
 local github = "https://raw.githubusercontent.com/JoeTheCrason/fe-source/refs/heads/main/NPC"
 local load = loadstring(game:HttpGet(github .. "/module.Luau"))()
@@ -138,7 +138,7 @@ end)
 -- changing lp.Character, so the player's own character is unaffected.
 local spectateCon
 local spectateHandle
-spectateHandle = new:maintoggle("spectate npc", "attach your camera view to the target", function(a)
+spectateHandle = new:maintoggle("Spectate npc", "Attach your camera view to the target", function(a)
 	if a then
 		if currentnpc then
 			local hrp = currentnpc:FindFirstChild("HumanoidRootPart")
