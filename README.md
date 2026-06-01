@@ -37,7 +37,7 @@ The panel features structural control cards for discrete target interactions:
 
 | Main Controls View | State & Action View |
 | :---: | :---: |
-| ![Main Controls View]({80D06C98-0508-4423-A72D-E6643C124A52}.png) | ![State & Action View]({E3814CDF-E553-4C96-B333-F898FBC7C699}.png) |
+| ![Main Controls View](blob:https://gemini.google.com/7b89f44a-65e0-41e7-91e5-d7ea5ee5c302) | ![State & Action View](blob:https://gemini.google.com/d3fb84bb-810c-4db6-9218-0e429b9a7e14) |
 
 ---
 
