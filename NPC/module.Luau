@@ -1,6 +1,5 @@
 --[[
 	NPC Panel - Modern UI Module  v3
-	Original script by @Im_Patrick
 	UI refinements: flat bottom bar corners, fixed toggle alignment in templates,
 	                auto-select card slot, spectate toggle template exposed,
 	                all previous fixes retained.
