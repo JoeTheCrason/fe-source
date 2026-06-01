@@ -236,7 +236,7 @@ do
 	icon.Image                 = "rbxassetid://124350377833889"
 	icon.ScaleType             = Enum.ScaleType.Fit
 	icon.Size                  = UDim2.new(0, 34, 0, 34)
-	icon.Position              = UDim2.new(0, 26, 0.5, -17)
+	icon.Position              = UDim2.new(0, 19, 0.5, -17)
 	icon.BackgroundTransparency = 1
 	icon.BorderSizePixel       = 0
 	icon.ZIndex                = 3
