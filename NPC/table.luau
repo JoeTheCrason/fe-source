@@ -1,12 +1,12 @@
 return {
-	["1"] = {title = "kill npc", des = "instant kill the npc", val = 15},
-	["2"] = {title = "bring npc", des  = "teleport the npc to your position"},
-	["3"] = {title = "goto npc", des = "teleport your character to npc position"},
-	["4"] = {title = "control npc", des = "control npc/dummy until the npc loses network ownership"},
-	["5"] = {title = "punish npc", des = "make npc disappear into space"},
-	["6"] = {title = "npc sit state", des = "make npc in sitting position"},
-	["7"] = {title = "npc jump state", des = "make npc jump", val = 3},
-	["8"] = {title = "following npc", des = "make npc follow you"},
-	["9"] = {title = "kill aura any npc", val = 15},
-	["10"] = {title = "jump aura any npc", val = 3}
+	["1"] = {title = "Kill NPC", des = "Instantly kill the NPC", val = 15},
+	["2"] = {title = "Bring NPC", des  = "Teleport the NPC to your position"},
+	["3"] = {title = "Goto NPC", des = "Teleport your character to the NPC's position"},
+	["4"] = {title = "Control NPC", des = "Take control of the NPC until network ownership is lost"},
+	["5"] = {title = "Punish NPC", des = "Make the NPC disappear into space"},
+	["6"] = {title = "NPC Sit State", des = "Force the NPC into a sitting position"},
+	["7"] = {title = "NPC Jump State", des = "Make the NPC jump", val = 3},
+	["8"] = {title = "Follow NPC", des = "Make the NPC follow you"},
+	["9"] = {title = "Kill Aura (Any NPC)", val = 15},
+	["10"] = {title = "Jump Aura (Any NPC)", val = 3}
 }
