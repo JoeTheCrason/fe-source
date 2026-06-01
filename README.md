@@ -41,7 +41,7 @@ The panel features structural control cards for discrete target interactions:
 
 ---
 
-## 🚀 Installation & Usage
+## Installation & Usage
 
 To execute this interface in your game engine or executor environment, paste the standard bootstrapper code into your execution tool:
 
