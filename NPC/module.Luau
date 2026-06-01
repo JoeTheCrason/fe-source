@@ -625,7 +625,7 @@ do
 
 	local ico = Instance.new("ImageButton", G2L["icon"])
 	ico.Name                  = "ImageButton"
-	ico.Image                 = "rbxassetid://96581271712752"
+	ico.Image                 = "rbxassetid://124350377833889"
 	ico.ScaleType             = Enum.ScaleType.Fit
 	ico.AnchorPoint           = Vector2.new(0.5, 0.5)
 	ico.Position              = UDim2.new(0.5, 0, 0.5, 0)
