@@ -37,7 +37,7 @@ The panel features structural control cards for discrete target interactions:
 
 | Main Controls View | State & Action View |
 | :---: | :---: |
-| ![Main Controls View](https://media.discordapp.net/attachments/1231302250194931812/1510850327988146387/7b89f44a-65e0-41e7-91e5-d7ea5ee5c302.png?ex=6a1e5084&is=6a1cff04&hm=a9480109369ea76541fa933593bfeb9fe3acc4dd907a50ea473804bf291dcd4e&=&format=webp&quality=lossless&width=621&height=445) | ![State & Action View]([blob:https://gemini.google.com/d3fb84bb-810c-4db6-9218-0e429b9a7e14](https://cdn.discordapp.com/attachments/1231302250194931812/1510850449790734546/d3fb84bb-810c-4db6-9218-0e429b9a7e14.png?ex=6a1e50a1&is=6a1cff21&hm=b386bcd0d2a3212f00c96d348921b88a7ca86e4bc039dc79729ceda24c77991a)) |
+| ![Main Controls View](https://media.discordapp.net/attachments/1231302250194931812/1510850327988146387/7b89f44a-65e0-41e7-91e5-d7ea5ee5c302.png?ex=6a1e5084&is=6a1cff04&hm=a9480109369ea76541fa933593bfeb9fe3acc4dd907a50ea473804bf291dcd4e&=&format=webp&quality=lossless&width=621&height=445) | ![State & Action View](https://cdn.discordapp.com/attachments/1231302250194931812/1510850449790734546/d3fb84bb-810c-4db6-9218-0e429b9a7e14.png?ex=6a1e50a1&is=6a1cff21&hm=b386bcd0d2a3212f00c96d348921b88a7ca86e4bc039dc79729ceda24c77991a) |
 
 ---
 
