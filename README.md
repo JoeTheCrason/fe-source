@@ -46,4 +46,4 @@ The panel features structural control cards for discrete target interactions:
 To execute this interface in your game engine or executor environment, paste the standard bootstrapper code into your execution tool:
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/JoeTheCrason/fe-source/refs/heads/main/NPC/source/main.Luau"))()```
+loadstring(game:HttpGet("https://raw.githubusercontent.com/JoeTheCrason/fe-source/refs/heads/main/NPC/source/main.Luau"))()
