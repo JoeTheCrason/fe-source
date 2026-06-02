@@ -138,7 +138,7 @@ end)
 -- changing lp.Character, so the player's own character is unaffected.
 local spectateCon
 local spectateHandle
-spectateHandle = new:maintoggle("Spectate npc", "Attach your camera view to the target", function(a)
+spectateHandle = new:maintoggle("Spectate NPC", "Attach your camera view to the target", function(a)
 	if a then
 		if currentnpc then
 			local hrp = currentnpc:FindFirstChild("HumanoidRootPart")
